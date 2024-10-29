@@ -3,57 +3,29 @@ package org.launchcode.codingevents.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
-/**
- * Created by Chris Bay
- */
 @Entity
-public class EventCategory {
+public class EventCategory extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    private int id;
-
-    @Size(min=3, message="Name must be at least 3 characters long")
+    @Size(min = 3, message = "Must have at least 3 characters")
     private String name;
 
-    public EventCategory(@Size(min = 3, message = "Name must be at least 3 characters long") String name) {
+    public EventCategory(String name) {
         this.name = name;
     }
 
-    public EventCategory() {}
-
-    public String getName() {
+    public @Size(min = 3, message = "Must have at least 3 characters") String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@Size(min = 3, message = "Must have at least 3 characters") String name) {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EventCategory that = (EventCategory) o;
-        return id == that.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+    public EventCategory(){};
 }
 
